@@ -13,6 +13,7 @@ use App\Models\User;
 use Spatie\Permission\Models\Role;
 use App\Models\StartMavzu;
 use App\Models\ResultTask;
+use App\Models\Video;
 use Auth;
 
 class HomeController extends Controller
@@ -346,7 +347,7 @@ class HomeController extends Controller
 
     public function starttask()
     {
-        $themes = Tema::with('mavzu')->get();
+        $themes = Tema::with(['mavzu','videos'])->orderBy('created_at','desc')->get();
 
         return view('folders.usFolder',[
             'themes' => $themes
@@ -518,6 +519,15 @@ class HomeController extends Controller
             'tasks' => $tasks
         ]);
     }
+    public function addVideo()
+    { 
+        $themes = Tema::all();
+
+        return view('folders.addvideos',[
+            'themes' => $themes
+        ]);
+    }
+
     public function AddThem(Request $request)
     {
         $new = new Mavzu();
@@ -527,6 +537,16 @@ class HomeController extends Controller
         $new->text2 = $request->text2;
         $new->ball = $request->ball;
         $new->time_count = $request->time_count ?? 0;
+        $new->save();
+
+        return redirect()->back()->with('msg' ,1);
+    }
+
+    public function AddVid(Request $request)
+    {
+        $new = new Video();
+        $new->tema_id = $request->them_id;
+        $new->url = $request->url;
         $new->save();
 
         return redirect()->back()->with('msg' ,1);

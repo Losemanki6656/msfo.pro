@@ -15,7 +15,48 @@
 
     </div>
     <div class="row">
-        <div class="col-8 mx-auto">
+        @foreach ($themes as $item)
+            <div class="col-12 col-lg-6">
+                <div style="min-height: 140px"
+                    @if ($item->mavzu->count() > 0) 
+                        class="card radius-10 border-0 border-start border-tiffany border-3"
+                    @else 
+                        class="card radius-10 border-0 border-start border-orange border-3" 
+                    @endif 
+                   >
+                    <div class="card-body" >
+                        <div class="d-flex align-items-center">
+                            <div class="project-date">
+                                <p class="mb-0 font-13"> {{ $item->created_at->diffindays() }} дней назад </p>
+                            </div>
+                            @if ($item->videos->count() )
+                            <a href="{{$item->video->url}}" class="btn btn-sm btn-danger py-1 px-3 radius-30 ms-auto"> <i class="bi bi-youtube"></i> Видеоурок</a>
+                            @endif
+                           
+                        </div>
+                        <div class="text-center my-1">
+                            <h6 class="mb-0">{{ $item->name }}</h6>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            @if ($item->mavzu->count())
+                                <div class="project-user-groups">
+                                    {{ $item->mavzu->count() }}
+                                </div>
+
+
+                                <a href="{{ route('ThemesF', ['id' => $item->id]) }}"
+                                    class="btn btn-sm btn-primary py-1 px-3 radius-30 ms-auto">Задача:
+                                    {{ $item->mavzu->count() }}</a>
+                            @endif
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+
+        {{-- <div class="col-8 mx-auto">
             <div class="best-product p-2" style="height: auto">
                 @foreach ($themes as $item)
                     <div class="card radius-10 w-100">
@@ -36,11 +77,13 @@
                                         </div>
                                     </div>
                                     <div class="sales-count ms-auto">
-                                        <label><span class="fw-bold text-primary">Создано:</span>{{$item->created_at->format('Y-m-d')}}</label>
-                                        <a href="{{ route('ThemesF',['id' => $item->id ]) }}" type="button" class="btn btn-warning"> Задача <span
-                                                class="badge bg-dark">{{$item->mavzu->count()}}</span>
+                                        <label><span
+                                                class="fw-bold text-primary">Создано:</span>{{ $item->created_at->format('Y-m-d') }}</label>
+                                        <a href="{{ route('ThemesF', ['id' => $item->id]) }}" type="button"
+                                            class="btn btn-warning"> Задача <span
+                                                class="badge bg-dark">{{ $item->mavzu->count() }}</span>
                                         </a>
-                                       
+
                                     </div>
                                 </div>
                             </div>
@@ -48,7 +91,8 @@
                     </div>
                 @endforeach
             </div>
-        </div>
+        </div> --}}
+
     </div>
 @endsection
 

@@ -67,7 +67,9 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/Questions/themes', [App\Http\Controllers\HomeController::class, 'themes'])->name('themes');
     Route::get('/Questions/addthemes', [App\Http\Controllers\HomeController::class, 'addthemes'])->name('addthemes');
+    Route::get('/Questions/addVideo', [App\Http\Controllers\HomeController::class, 'addVideo'])->name('addVideo');
     Route::post('/Questions/AddThem', [App\Http\Controllers\HomeController::class, 'AddThem'])->name('AddThem');
+    Route::post('/Questions/AddVid', [App\Http\Controllers\HomeController::class, 'AddVid'])->name('AddVid');
     Route::get('/Questions/TaskView/{id}', [App\Http\Controllers\HomeController::class, 'TaskView'])->name('TaskView');
     Route::get('/Questions/questaskview/{id}', [App\Http\Controllers\HomeController::class, 'questaskview'])->name('questaskview');
 

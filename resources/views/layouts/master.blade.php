@@ -198,6 +198,12 @@
                                     class="list-group-item {{ url()->current() == route('addTask') ? 'active' : '' }}"><i
                                         class="lni lni-circle-plus">
                                     </i> Добавить вопрос</a>
+                                    
+                                <a href="{{ route('addVideo') }}"
+                                    class="list-group-item {{ url()->current() == route('addVideo') ? 'active' : '' }}"><i
+                                        class="lni lni-circle-plus">
+                                    </i> Добавить видео</a>
+
                                 <a href="{{ route('resultaskview') }}"
                                     class="list-group-item {{ url()->current() == route('resultaskview') ? 'active' : '' }}">
                                     <i class="lni lni-circle-plus">
